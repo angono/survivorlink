@@ -1,0 +1,71 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% load i18n %}
+
+
+{% block  title %}
+<div class="jumbotron jumbotron-fluid mdl-typography--text-center px-3" style="background-color: #dfd7e5;">
+    <h1 class="h1 mdl-color-text--purple-600">
+        {% trans "Welcome To Our Site!" %}
+    </h1>
+    <p class="lead mx-auto">
+        {% trans "Sharing the true lives stories to society to fight HTPs." %}
+    </p>
+    <p class="lead mx-auto">
+        {% trans "Together we fight harmful traditional practices." %}
+    </p>
+
+    <div class="dropdown">
+        <button class="btn btn-secondary btn-md dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+            {% trans "Language" %}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+
+            <li><h6 class="dropdown-header">Select Language</h6></li>
+            {% for lang in languages %}
+            <li>
+                <a class="dropdown-item selected" href="/{{ lang.code }}/">
+                    {{lang.name_local|capfirst}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+{% endblock title %}
+
+
+
+{% block content %}
+
+{% for obj in story_data %}
+{% if obj.is_available == True %}
+<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+    <div class="container p-3">
+        <p class="txt-color h4">
+            {% blocktranslate with t=obj.title|capfirst|truncatechars:30 %}{{t}}{% endblocktranslate %}
+        </p>
+        <p class="h5">
+            {% blocktranslate with c=obj.content|safe|capfirst|truncatechars:200 %}{{c}}{% endblocktranslate %}
+        </p>
+        <p class="txt-color h6">
+            {% trans "On" %} {% blocktranslate with dt=obj.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{obj.publisher|capfirst}}
+        </p>
+        <div class="line"></div>
+        <a href="{% url 'story:story-detail' obj.id %}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--purple-600 mdl-color-text--white text-uppercase">
+            {% trans "Read More" %}
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock content %}
+
+
+

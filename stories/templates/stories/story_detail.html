@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %} 
+{% block content %}
+
+<div class="container">
+    <div class="my-2">
+        <a href="{% url 'story:story-list' %}" class="mdl-color-text--purple">
+            {% trans "Home" %} &gt; {% trans "Details" %} 
+        </a>
+    </div>
+    <div class="line mb-3"></div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp mx-auto">
+        <div class="container p-4">
+            <p class="txt-color h4">
+                {% blocktranslate with t=object.title|capfirst %}{{t}}{% endblocktranslate %}
+            </p>
+            {% if object.author %}
+                <p class="mdl-color-text--red-600 h6">
+                    {% trans "Author" %}: {{object.author|capfirst}}
+                </p>
+            {% endif %}
+            <p class="lead">
+                {% blocktranslate with c=object.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
+            </p>
+            <p class="txt-color h5">
+                {% trans "On" %} {% blocktranslate with dt=object.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{object.publisher|capfirst}}
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+
+

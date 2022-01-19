@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+    <div class="my-2">
+        <a href="{% url 'story:story-list' %}" class="mdl-color-text--purple">
+            {% trans "Home" %} &gt; {% trans "About" %}
+        </a>
+    </div>
+    <div class="line mb-3"></div>
+
+    <div class="row featurette mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="container">
+                {% for obj in about_data %}
+                    <p class="txt-color h4">
+                        {% blocktranslate with t=obj.title|capfirst %}{{t}}{% endblocktranslate %}
+                    </p>
+                    <p class="lead">
+                        {% blocktranslate with c=obj.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
+                    </p>
+                {% endfor %}
+
+                <div class="line"></div>
+                <p class="txt-color h4">{% trans "Call us" %}</p>
+                {% for obj in call_data %}
+                    <p class="h5">{% trans "Phone" %}: {{obj.mobile}}</p>
+                {% endfor %}
+
+                <div class="line"></div>
+                <p class="txt-color h4">{% trans "Write us" %}</p>
+                {% for obj in email_data %}
+                    <p class="h5">{% trans "Email" %}: {{obj.email}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <img src="{% static 'blog/assets/abt1.jpg' %}" class="detail-img img-effect bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto bg-light" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+

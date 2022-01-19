@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<div class="container">
+    <div class="my-2">
+        <a href="{% url 'story:story-list' %}" class="mdl-color-text--purple">
+            {% trans "Home" %} &gt; {% trans "Tips list" %} 
+        </a> 
+    </div>
+    <div class="line mb-3"></div>
+
+    {% for obj in tip_data %}
+        {% if obj.is_available == True %}
+        <div class="col-md-12 mb-3">
+            <a href="{% url 'tips:tip-detail' obj.id %}" class="txt-color h4">
+                {% blocktranslate with t=obj.title|capfirst %}{{t}}{% endblocktranslate %}
+            </a>
+            <p class="h5">{% trans "On" %} {% blocktranslate with dt=obj.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{obj.author|capfirst}}</p>
+        </div>
+
+        <div class="line"></div>
+        {% endif %}
+    {% endfor %}
+
+    
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,189 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="description" content="Sharing the true lives stories to society to fight HTPs.">
+<meta name="author" content="Survivors Link">
+
+<title>Survivors Link</title>
+
+<link rel="icon" type="image/x-icon" class="rounded-circle" href="{% static 'blog/assets/logo.ico' %}" />
+
+{% if title %}
+    <title>Survivors Link - {{ title }}</title>
+{% else %}
+    <title>Survivors Link</title>
+{% endif %} 
+
+
+<!-- Material Design Lite -->
+<script src="{% static 'blog/mdl/material.min.js' %}"></script>
+<script src="{% static 'blog/mdl/material.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'blog/mdl/material.min.css' %}">
+<link rel="stylesheet" href="{% static 'blog/mdl/material.css' %}">
+
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-blue.min.css" />
+<!-- Material Design icon font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="{% static 'blog/bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'blog/bootstrap/js/jquery-3.2.1.slim.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'blog/bootstrap/js/bootstrap.min.js' %}"></script>
+
+
+<style type="text/css">
+    div, a, li, p, h1, h2, h3, h4, h5, h6{
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.02em;
+        font-weight: 300;
+        line-height: 1.7em;
+        color: grey;
+    }
+
+    .bg-color{
+        background-color: #60327c !important;
+        color: white;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed #ddd;
+        margin: 10px 0;
+    }
+
+    .txt-color{
+        color: #60327c !important; 
+    }
+
+    .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+        padding-right: 0;
+        text-decoration: none !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    .detail-img {
+        width: 100%;
+        height: 380px;
+        border-radius: 0.2rem;
+    }
+
+    .grid-max-width {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .img-effect{
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        padding: 2px 2px 2px 2px;
+        cursor: pointer;
+    }
+
+    .img-effect:hover{
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+
+</style>
+
+</head>
+<body>
+    <!-- Uses a header that scrolls with the text, rather than staying
+      locked at the top -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header bg-color">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title mdl-layout--large-screen-only">
+                    <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
+                        <img class="mr-2 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">
+                        Survivors Link
+                    </a>
+                </span>
+
+                <span class="mdl-layout-title mdl-layout--small-screen-only">
+                    <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
+                        <img class="mr-0 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">
+                        Survivors L
+                    </a>
+                </span>
+
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="{% url 'story:story-list' %}">{% trans "Home" %}</a>
+                    <a class="mdl-navigation__link" href="{% url 'tips:tip-list' %}">{% trans "Tips" %}</a>
+                    <a class="mdl-navigation__link" href="{% url 'blog:blog-about' %}">{% trans "About" %}</a>
+                </nav>
+          
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right my-auto">
+                    <form method="GET" action="{% url 'story:story-search' %}" class="d-flex">
+                        <label class="mdl-button mdl-js-button mdl-button--icon mdl-color-text--white" for="fixed-header-drawer-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input mdl-color-text--white q"  type="text" name="q" value="{{request.GET.q}}" id="fixed-header-drawer-exp">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <main class="mdl-layout__content bg-light">
+            <a name="top"></a>
+            <div class="page-content mx-auto">
+                <!-- Your content goes here -->
+                {% block  title %}{% endblock title %}
+
+
+                <div class="mdl-grid grid-max-width mb-5">
+                    {% block  content %}{% endblock %}
+                </div>
+            </div>
+
+
+            <footer class="mdl-mini-footer mt-5">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">
+                        <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
+                            <img class="mr-2 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">Survivors Link
+                        </a>
+                    </div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li>
+                            <a href="{% url 'blog:blog-about' %}" class="mdl-color-text--white">{% trans "About" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'tips:tip-list' %}" class="mdl-color-text--white">{% trans "Tips" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'blog:blog-term' %}" class="mdl-color-text--white">{% trans "Terms" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'blog:blog-policy' %}" class="mdl-color-text--white">{% trans "Privacy Policy" %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
