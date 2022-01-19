@@ -15,17 +15,14 @@
     <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp mx-auto">
         <div class="container p-4">
             <p class="txt-color h4">
-                {% blocktranslate with t=object.title|capfirst %}{{t}}{% endblocktranslate %}
+                {% blocktranslate with t=ids.title|capfirst %}{{t}}{% endblocktranslate %}
             </p>
             <p class="lead">
-                {% blocktranslate with c=object.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
+                {% blocktranslate with c=ids.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
             </p>
             <p class="txt-color h5">
-                {% trans "On" %} {% blocktranslate with dt=object.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{object.author|capfirst}}
+                {% trans "On" %} {% blocktranslate with dt=ids.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{ids.author|capfirst}}
             </p>
-
-            <!-- <div class="line"></div>
-            <a href="#" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--purple-600 mdl-color-text--white text-uppercase">Like</a> -->
         </div>
     </div>
 

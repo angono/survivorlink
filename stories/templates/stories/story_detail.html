@@ -15,18 +15,18 @@
     <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp mx-auto">
         <div class="container p-4">
             <p class="txt-color h4">
-                {% blocktranslate with t=object.title|capfirst %}{{t}}{% endblocktranslate %}
+                {% blocktranslate with t=ids.title|capfirst %}{{t}}{% endblocktranslate %}
             </p>
-            {% if object.author %}
+            {% if ids.author %}
                 <p class="mdl-color-text--red-600 h6">
-                    {% trans "Author" %}: {{object.author|capfirst}}
+                    {% trans "Author" %}: {{ids.author|capfirst}}
                 </p>
             {% endif %}
             <p class="lead">
-                {% blocktranslate with c=object.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
+                {% blocktranslate with c=ids.content|safe|capfirst|linebreaks %}{{c}}{% endblocktranslate %}
             </p>
             <p class="txt-color h5">
-                {% trans "On" %} {% blocktranslate with dt=object.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{object.publisher|capfirst}}
+                {% trans "On" %} {% blocktranslate with dt=ids.date|date %}{{dt}}{% endblocktranslate %} | {% trans "By" %} {{ids.publisher|capfirst}}
             </p>
 
         </div>

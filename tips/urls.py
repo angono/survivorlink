@@ -4,8 +4,8 @@ from .views import *
 app_name = 'tips'
 
 urlpatterns = [
-    path('', TipListView.as_view(), name='tip-list'), 
-    path('detail/<str:pk>/', TipDetailView.as_view(), name='tip-detail'),
+    path('', tip_list_view, name='tip-list'), 
+    path('detail/<str:ids>/', tip_detail_view, name='tip-detail'),
 
 ]
 
