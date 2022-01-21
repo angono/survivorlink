@@ -11,14 +11,14 @@
 <meta name="description" content="Sharing the true lives stories to society to fight HTPs.">
 <meta name="author" content="Survivors Link">
 
-<title>Survivors Link</title>
+<title>Umiza</title>
 
 <link rel="icon" type="image/x-icon" class="rounded-circle" href="{% static 'blog/assets/logo.ico' %}" />
 
 {% if title %}
-    <title>Survivors Link - {{ title }}</title>
+    <title>Umiza - {{ title }}</title>
 {% else %}
-    <title>Survivors Link</title>
+    <title>Umiza</title>
 {% endif %} 
 
 
@@ -108,17 +108,10 @@
         <header class="mdl-layout__header bg-color">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title mdl-layout--large-screen-only">
+                <span class="mdl-layout-title">
                     <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
                         <img class="mr-2 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">
-                        Survivors Link
-                    </a>
-                </span>
-
-                <span class="mdl-layout-title mdl-layout--small-screen-only">
-                    <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
-                        <img class="mr-0 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">
-                        Survivors Link
+                        Umiza
                     </a>
                 </span>
 
@@ -160,7 +153,7 @@
                 <div class="mdl-mini-footer__left-section">
                     <div class="mdl-logo">
                         <a href="{% url 'story:story-list' %}" class="mdl-color-text--white">
-                            <img class="mr-2 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">Survivors Link
+                            <img class="mr-2 rounded-circle" height="35" width="35" src="{% static 'blog/assets/logo.ico' %}">Umiza
                         </a>
                     </div>
                 </div>

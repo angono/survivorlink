@@ -8,10 +8,13 @@ from django.dispatch import receiver
 class Story(models.Model):
     publisher = models.ForeignKey(User, on_delete=models.CASCADE, help_text="Who is publishing the story.")
     title = models.CharField(max_length=300, help_text="Title of your story.")
-    content = models.TextField(help_text="Describe the story.")
+    content = models.TextField(blank=True, help_text="Describe the story. This field is optional.")
     is_available = models.BooleanField(default=True, help_text="Is this for everyone.")
     author = models.CharField(max_length=100, blank=True, help_text="Who is the owner of the story. This field is optional.")
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True) 
+    video_url = models.CharField(max_length=1000, blank=True)
+    # thumbnail = models.CharField(max_length=1000, blank=True)
+
 
     class Meta:
         ordering = ['-date',] 

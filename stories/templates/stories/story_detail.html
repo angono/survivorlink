@@ -1,18 +1,27 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% load i18n %} 
 {% block content %}
 
 <div class="container">
     <div class="my-2">
         <a href="{% url 'story:story-list' %}" class="mdl-color-text--purple">
-            {% trans "Home" %} &gt; {% trans "Details" %} 
+            <i class="material-icons" role="presentation">home</i>
+            &gt; {% trans "Details" %} &gt;
         </a>
     </div>
     <div class="line mb-3"></div>
 
     <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp mx-auto">
+        {% if ids.video_url != None %}
+            <div class="mb-0">
+                <!-- <video controls controlsList="nodownload" width="100%" poster="{% static 'blog/assets/abt0.jpg' %}">
+                    <source src="{{ids.video_url.url}}" type="video/mp4">
+                    Sorry, your browser doesn't support embedded videos.
+                </video> -->
+                <img src="{{ids.video_url}}" width="100%">
+            </div>
+        {% endif %}
         <div class="container p-4">
             <p class="txt-color h4">
                 {% blocktranslate with t=ids.title|capfirst %}{{t}}{% endblocktranslate %}

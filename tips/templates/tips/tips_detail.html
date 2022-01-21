@@ -7,7 +7,9 @@
 <div class="container">
     <div class="my-2">
         <a href="{% url 'tips:tip-list' %}" class="mdl-color-text--purple">
-            {% trans "Back to list" %} &gt; {% trans "Details" %} 
+            <!-- {% trans "Back to list" %} &gt; {% trans "Details" %}  -->
+            <i class="material-icons" role="presentation">list</i>
+            &gt; {% trans "Details" %} &gt;
         </a>
     </div>
     <div class="line mb-3"></div>
